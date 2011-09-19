@@ -1,0 +1,9 @@
+## Interface: 40200
+## Title: |cffcccc22D|r|cff999999erpy|rXCT
+## Notes: X Combat Text
+## Author: Affli @ RU-Howling Fjord
+## Version: 1.8f_h
+## RequiredDeps: Blizzard_CombatText, DerpyMedia
+
+config.lua
+xCT.lua
