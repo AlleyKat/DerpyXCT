@@ -40,56 +40,47 @@ do
 	end
 	for x,y in pairs(_G.DerpyXCT) do ct[x] = y end
 end
+
+local M = ns[2]	
+local mis = M.make_settings_template("COMBAT TEXT",266,570)
+
+local st = {
+	["blizzheadnumbers"] = "BLIZZARD OUTPUT",
+	["damagestyle"] = "STYLE DAMAGE FONT",
+	["damage"] = "SHOW DAMAGE",
+	["healing"] = "SHOW HEALING",
+	["showhots"] = "SHOW HOTS",
+	["damagecolor"] = "DAMAGE COLOR",
+	["icons"] = "SHOW ICONS",
+	["petdamage"] = "PET DAMAGE",
+	["dotdamage"] = "DET`S DAMAGE",
+	["scrollable"] = "ABLE TO SCROLL",
+	["stopvespam"] = "STOP SPAM (SHADOW)",
+	["dkrunes"] = "DK RUNES",
+	["mergeaoespam"] = "MERGE AOE SPAM",
+	["killingblow"] = "KILLING BLOW",
+	["dispel"] = "SHOW DISPEL",
+	["interrupt"] = "SHOW INTERRUPT",}
 	
-local mis
-local M = ns[2]
-M.call.xct = function()
-	if mis then mis:Show() return end
-	local st = {
-		["blizzheadnumbers"] = "Blizzard Output",
-		["damagestyle"] = "Style Damage Font",
-		["damage"] = "Show Damage",
-		["healing"] = "Show Healing",
-		["showhots"] = "Show Hots",
-		["damagecolor"] = "Damage Color",
-		["icons"] = "Show Icons",
-		["petdamage"] = "Pet Damage",
-		["dotdamage"] = "Dot`s Damage",
-		["scrollable"] = "Able To Scroll",
-		["stopvespam"] = "Stop Spam (Shadow Form)",
-		["dkrunes"] = "DK Runes",
-		["mergeaoespam"] = "Merge AOE Spam",
-		["killingblow"] = "Killing Blow",
-		["dispel"] = "Show Dispel",
-		["interrupt"] = "Show Interrupt",}
-	mis = M.make_settings(st,ct,300,256,"|cffff0000X|r COMBAT TEXT",true)
-	local st = {
-			["iconsize"] = {"Icon Size Ratio",6,60},
-			["treshold"] = {"Minimum Damage To Show",1,2000},
-			["healtreshold"] = {"Minimum Healing To Show",1,2000},
-			["fontsize"] = {"Font Size",6,60},
-			["damagefontsize"] = {"Damage Font Size",6,60},
-			["timevisible"] = {"Visible Time",1,60},
-			["maxlines"] = {"Max Lines",12,256},
-			["mergeaoespamtime"] = {"Merge AOE Spam Time",1,60},}
-	local bars = {}
-		for name,text in pairs(st) do
-			tinsert(bars,M.makevarbar(mis,254,text[2],text[3],ct,name,text[1]))
-		end
-		for i=1,8 do
-			if i == 1 then 
-				bars[i]:SetPoint("TOP",mis,0,-27)
-			else
-				bars[i]:SetPoint("TOP",bars[i-1],"BOTTOM")
-			end
-		end
-	M.make_fonttype(mis,ct,"fontstyle","Font Style"):SetPoint("TOP",bars[8],"BOTTOM",0,-4)
-	local acb = M.frame(mis,30,"HIGH")
-	acb:SetSize(256,35)
-	acb:SetPoint("TOP",mis,"BOTTOM",0,2)
-	local about = M.setfont(acb,12,nil,nil,"CENTER")
-	about:SetPoint("CENTER",0,1.5)
-	about:SetSize(256,36)
-	about:SetText("This is only a part of configuration\n Type |cffff0000/xct|r to get another one")
-	mis:Show()
+M.tweaks_mvn(mis,ct,st,322)	
+
+local st = {
+	["iconsize"] = {"ICON SIZE RATIO",6,60},
+	["treshold"] = {"MINIMUM DAMAGE TO ShOW",1,2000},
+	["healtreshold"] = {"MINIMUM HEALING TO SHOW",1,2000},
+	["fontsize"] = {"FONT SIZE",6,60},
+	["damagefontsize"] = {"DAMAGE FONT SIZE",6,60},
+	["timevisible"] = {"VISIBLE TIME",1,60},
+	["maxlines"] = {"MAX LINES",12,256},
+	["mergeaoespamtime"] = {"MERGE AOE SPAM TIME",1,60},}
+local bars = {}
+for name,text in pairs(st) do
+	tinsert(bars,M.makevarbar(mis,254,text[2],text[3],ct,name,text[1]))
+end
+for i=1,8 do
+	if i == 1 then 
+		bars[i]:SetPoint("TOP",mis,0,-27)
+	else
+		bars[i]:SetPoint("TOP",bars[i-1],"BOTTOM")
+	end
 end
